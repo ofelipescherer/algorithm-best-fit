@@ -32,9 +32,9 @@ def try_allocate(memory, next_process_block_size):
 
 def free_memory(current_processes, memory, id_to_be_removed):
   current_processes.remove(id_to_be_removed)
-  for i, v in enumerate(memory):
-    if(v==id_to_be_removed):
-      memory[i] = -1
+  for index, value in enumerate(memory):
+    if(value==id_to_be_removed):
+      memory[index] = -1
 
 def program():
   memory = [-1] * 100
