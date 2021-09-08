@@ -28,72 +28,43 @@ Some important things:
 
 # How Works 👨‍🏫
 
-1. We have two list that represents memories- VRAM and RAM
+1. First we create some variables
 ```python
-vram = []
-ram = [-1 ] * 10
-```
-VRAM is infinite, so we don't need to define the start value. But RAM is not, so we defined that RAM has 10 spaces (You can change if you want).
-
-2. We random create some process with a random number of pages with random number of size (You can change if you want).
-```python
-  number_of_process = randint(1,3)
-  for process_id in range(number_of_process):
-    process = []
-    pages = randint(1,5)
-    for page in range(pages):
-      size = randint(1,3)
-      process.append([process_id , page, size])
-      print(f' Process: {process_id}; Page: {page}; Size: {size}')
-    vram.append(process)
+  memory = [-1] * 100
+  current_processes = []
+  config = []
+  id = 0
+  loops_remaining_before_remove = 2
 ```
 
-3. We need to create de mapping and add to the RAM.
+2. After that, we create a while loop, that will try to create and allocate the process. If the process can't be allocated (because memory is full), it return None and finish the while loop
 ```python
-  for index, value in enumerate(vram):
-    mapping = []
-    for process in value:
-      frame_number = randint(number_of_process+1, len(ram)-1)
-      mapping.append([process[1], frame_number])
-      print(f'Process {index} page {process[1]} mapped at frame {frame_number}')
-    ram[index] = mapping
-```
+def try_allocate(memory, next_process_block_size):
+  best_fit_index = len(memory)+1 
+  has_free_space = False
+  for index, block  in enumerate(memory):
+    if(block==-1):
+      counter = 0
+      for a in range(index, len(memory)):
+        if(memory[a]== -1):
+          counter += 1
+        else:
+          break
+      if(counter >= next_process_block_size):
+        if(counter <=  best_fit_index):
+          best_fit_index = index
+          has_free_space = True
+          break
 
-4. And after setting up all these things we can finally simulate the paging
- - First we try to allocate the process into RAM  
-```python
-in_process = True
-  while(in_process):
-    for process_index, process in enumerate(vram):
-      for page_index, page in enumerate(process):
-        if(page[2]!=0):
-          mapping = ram[process_index][page_index]
-          if(ram[mapping[1]]==-1):
-            print(f'Process {page[0]}, page {page[1]}, position {mapping[1]} allocated')
-            ram[mapping[1]] = page
-            print(f'RAM: {ram}\n')
-```
- - Second we need to decrease size of all process that are in RAM
-```python
-    for i in range(number_of_process, len(ram)):
-      if(ram[i]!=-1):
-        page = ram[i]
-        page[2] = page[2] - 1
-        if(page[2]<=0):
-          print(f'Removed process {page[0]}, page {page[1]}, position {ram.index(ram[i])} because processing has finished')
-          ram[i] = -1
-          print(f'RAM: {ram}\n')
-```
- - And finally we need to know if still has a process with size greater than 0, if it is, we try do more one loop, if it isn't we can finish the program
-```python
-    has_process = False
-    for i in vram:
-      for j in i:
-        if(j[2]!=0):
-          has_process = True
+  if(has_free_space):
+    return [best_fit_index, next_process_block_size]
+  else:
+    return None
+
     
-    if(not has_process):
-      in_process = False
+while config!=None:
+  next_process_block_size = randint(1,5)
+  config = try_allocate(memory, next_process_block_size)
 ```
 
 # Run Locally 📂
