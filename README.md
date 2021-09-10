@@ -84,4 +84,3 @@ while config!=None:
 - The project is [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 - You can fork and use as you want
 - I would appreciate if you put my name and the link to this repository
-- 
