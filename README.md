@@ -9,7 +9,7 @@
 </div>      
       
 # Introduction 💡
-Best fit is a memory management algorithm. Its operation consists of allocating the block in the smallest space that is big enough in that block. This algorithm is a little slow as it has to make several comparisons, but it prevents many errors.
+Best fit is a memory management algorithm. Its operation consists of allocating the block in the smallest space that is big enough in that block. This algorithm is a little slow as it has to make several comparisons, but it prevents many errors. 
 
 # About 📘
 The project was created to simulate best fit algorithm. This is just for demonstration, it's an easy and visually implementation. If you want to see a real implementation you can take a look at [Tutorials Point](https://www.tutorialspoint.com/cplusplus-program-for-best-fit-algorithm-in-memory-management).
