@@ -8,7 +8,7 @@
 </a>
 </div>      
       
-# Introduction 💡
+# Introduction 💡 
 Best fit is a memory management algorithm. Its operation consists of allocating the block in the smallest space that is big enough in that block. This algorithm is a little slow as it has to make several comparisons, but it prevents many errors. 
 
 # About 📘
