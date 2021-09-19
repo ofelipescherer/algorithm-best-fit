@@ -72,7 +72,7 @@ while config!=None:
 
 - Do a git clone
 
-      git clone https://github.com/ofelipescherer/algorithm-python-best-fit.git
+      git clone https://github.com/ofelipescherer/algorithm-best-fit.git
 
 - After you can run `paging.py`
 
